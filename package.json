@@ -1,0 +1,5 @@
+{
+	"scripts": {
+		"start": "cd src/frontend && npm start"
+	}
+}
