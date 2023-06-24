@@ -1,0 +1,41 @@
+@font-face {
+	font-family: 'Averta';
+	src: url('public/fonts/Averta-Bold.woff2') format('woff2'), url('public/fonts/Averta-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	--main-color: #334578;
+	--other-color: #7C8DB5;
+	--select-color: #FA7C05;
+	--border-color: #E6EFFB;
+	--player-color: #269393;
+	--light-player-color: #43a1a1;
+	--skeleton-color: #AAAAAA;
+}
+
+html, .wrapper {
+	min-height: 100%;
+	overflow: hidden;
+}
+
+body {
+	font-family: 'Averta', serif;
+	color: var(--main-color);
+
+	height: 100vh;
+}
+
+::-webkit-scrollbar {
+	width: 1px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--border-color);
+}
+
+::-webkit-scrollbar-thumb {
+	background: #abafb6;
+}
