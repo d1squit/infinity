@@ -121,8 +121,8 @@ LOGIN_REDIRECT_URL = reverse_lazy('index')
 
 CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = ('http://localhost:8888', 'http://localhost:3000')
-CSRF_TRUSTED_ORIGINS = ('http://localhost:8888', 'http://localhost:3000')
+CORS_ORIGIN_WHITELIST = ('http://localhost:8888', 'http://localhost:3000', 'http://localhost:5173')
+CSRF_TRUSTED_ORIGINS = ('http://localhost:8888', 'http://localhost:3000', 'http://localhost:5173')
 
 REST_FRAMEWORK = {
 	'DEFAULT_PERMISSION_CLASSES': (
