@@ -4,6 +4,9 @@ import { AuthProvider } from 'components/auth/AuthProvider';
 
 import { LoginForm, RegisterForm } from 'components/auth/forms/AuthForms';
 
+import 'scss/style.scss';
+
+
 class App extends Component {
 	render() {
 		return (
