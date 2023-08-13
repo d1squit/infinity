@@ -1,0 +1,25 @@
+body {
+	background-color: #fff;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	padding: 24px 35px;
+	overflow: auto;
+}
+
+.block.border-left {
+	border-left: 1px solid var(--border-color);
+}
+
+.block.border-right {
+ 	border-right: 1px solid var(--border-color);
+	padding-right: 0;
+}
+
+.text-icon {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}

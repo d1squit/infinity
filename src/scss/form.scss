@@ -1,7 +1,17 @@
+body {
+	background-color: #E5E5E5;
+}
+
 .main-block {
-	min-width: 450px;
+	width: 450px;
 }
 
 .form__field.invalid {
 	border-color: red;
+}
+
+button.disabled {
+	cursor: default;
+	pointer-events: none;
+	background-color: rgba(51, 69, 120, 0.4);
 }

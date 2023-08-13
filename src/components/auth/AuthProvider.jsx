@@ -1,16 +1,17 @@
 import React, { createContext, useEffect, useState } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-import { baseUrl, authFields } from '@/settings';
-import { createObject } from "@/utils.js";
+import { authFields } from '@/settings.js';
+import { fetchApi, createObject } from '@/utils.js';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
 	const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
 	const [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null);
+	const [isVerified, setVerified] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [error, _setError] = useState({});
 
@@ -21,16 +22,9 @@ export const AuthProvider = ({ children }) => {
 		_setError(newError);
 	};
 
-	useEffect(() => setError(createObject(authFields, Array(authFields.length).fill(''))), []);
-
 	const navigate = useNavigate();
 
-	const fetchApi = async (url, body) => {
-		return new Promise((resolve) => {
-			fetch(`${baseUrl}${url}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)})
-				.then(response => response.json().then(json => resolve({ data: json, status: response.status })));
-		});
-	};
+	useEffect(() => setError(createObject(authFields, Array(authFields.length).fill(''))), []);
 
 	const isAuthenticated = async () => {
 		const { data } = await fetchApi('/user/token/verify/', authTokens);
@@ -52,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
 	const registerUser = async (email, name, password, password_confirm) => {
 		const { data, status } = await fetchApi('/user/register/', { email, password, name, password_confirm });
-		if (status === 201) navigate('/login');
+		if (status === 201) navigate('/email-verify-waiting', { state: { email: email } });
 
 		setError(data);
 	};
@@ -68,6 +62,8 @@ export const AuthProvider = ({ children }) => {
 		error,
 		user,
 		setUser,
+		isVerified,
+		setVerified,
 		authTokens,
 		setAuthTokens,
 		registerUser,
